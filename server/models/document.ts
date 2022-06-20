@@ -1,5 +1,5 @@
 import { Document, model, Model, Schema, Types } from "mongoose";
-import { IPage, pageSchema } from "./page";
+import { IPage, PageSchema } from "./page";
 
 export interface IDocument extends Document {
   _id: Types.ObjectId;
@@ -10,7 +10,7 @@ export interface IDocument extends Document {
   updatedAt: string;
 }
 
-export const documentSchema = new Schema({
+export const DocumentSchema = new Schema({
   title: {
     type: String,
     required: true
@@ -19,9 +19,9 @@ export const documentSchema = new Schema({
     type: Number,
     required: true
   },
-  pages: [pageSchema]
+  pages: [PageSchema]
 }).set("autoIndex", true)
   .set("minimize", false)
   .set("timestamps", true);
 
-export const document: Model<IDocument> = model<IDocument>("Document", documentSchema);
+export const DocumentModel: Model<IDocument> = model<IDocument>("Document", DocumentSchema);

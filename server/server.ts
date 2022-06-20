@@ -7,6 +7,8 @@ import path = require("path");
 import db = require("./config/database");
 import { API_BASE_URL, Enviroment } from "./config/secrets";
 import { logger } from "./util/logger";
+import { DocumentRoutes } from "./routes/documentRoutes";
+import { PageRoutes } from "./routes/pageRoutes";
 
 class Server {
   public app: express.Application;
@@ -36,6 +38,7 @@ class Server {
     this.initRoutes();
   }
 
+  // Add security middlewares
   private initExpressMiddleware(): void {
     this.app.set("port", process.env.PORT || 3000);
     this.app.use("/", express.static(path.join(__dirname, "../public")));
@@ -72,7 +75,10 @@ class Server {
     });
   }
 
-  private initRoutes(): void {}
+  private initRoutes(): void {
+    this.app.use(`${API_BASE_URL}/documents`, new DocumentRoutes().router);
+    this.app.use(`${API_BASE_URL}/pages`, new PageRoutes().router);
+  }
 }
 
 const server = new Server();

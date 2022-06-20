@@ -6,7 +6,7 @@ export interface IPage extends Document {
   pageNr: number;
 }
 
-export const pageSchema: Schema = new Schema({
+export const PageSchema: Schema = new Schema({
   text: {
     type: String,
     required: true
@@ -19,5 +19,5 @@ export const pageSchema: Schema = new Schema({
   .set("minimize", false)
   .set("timestamps", true);
 
-export const page: Model<IPage> = model<IPage>("Page", pageSchema);
+export const PageModel: Model<IPage> = model<IPage>("Page", PageSchema);
 

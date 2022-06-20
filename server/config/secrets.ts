@@ -27,7 +27,7 @@ export const ENVIRONMENT = process.env.NODE_ENV;
 const isProductionEnv = ENVIRONMENT === Enviroment.Production;
 
 /**
- * Assigning enviroment variables
+ * Assigning environment variables
  */
 export const MONGODB_URI = isProductionEnv
   ? process.env.MONGODB_URI
