@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 
 import HttpStatusCode from "../util/HttpStatusCode";
-import { IDocument, DocumentModel } from "../models/document";
+import { DocumentModel } from "../models/document";
 
 export class DocumentController {
 
@@ -19,7 +19,7 @@ export class DocumentController {
 
   public async getDocument(req: Request, res: Response): Promise<void> {
     try {
-      const doc = await DocumentModel.findOne({ id: req.params.id });
+      const doc = await DocumentModel.findOne({ _id: req.params.id });
       if (doc === null) {
         res.sendStatus(HttpStatusCode.NOT_FOUND);
       } else {
@@ -35,8 +35,8 @@ export class DocumentController {
 
   public async createDocument(req: Request, res: Response): Promise<void> {
     try {
-      const newDoc: IDocument = new DocumentModel(req.body);
-      const doc = await DocumentModel.findOne({ id: req.body.id });
+      const newDoc = new DocumentModel(req.body);
+      const doc = await DocumentModel.findOne({ _id: req.body.id });
       if (doc === null) {
         const result = await newDoc.save();
         if (result === null) {
@@ -58,7 +58,7 @@ export class DocumentController {
   public async updateDocument(req: Request, res: Response): Promise<void> {
     try {
       const doc = await DocumentModel.findOneAndUpdate(
-        { id: req.params.id },
+        { _id: req.params.id },
         req.body
       );
       if (doc === null) {
@@ -77,7 +77,7 @@ export class DocumentController {
 
   public async deleteDocument(req: Request, res: Response): Promise<void> {
     try {
-      const doc = await DocumentModel.findOneAndDelete({ id: req.params.id });
+      const doc = await DocumentModel.findOneAndDelete({ _id: req.params.id });
       if (doc === null) {
         res.sendStatus(HttpStatusCode.NOT_FOUND);
       } else {

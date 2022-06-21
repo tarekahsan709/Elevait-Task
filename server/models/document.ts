@@ -1,4 +1,5 @@
 import { Document, model, Model, Schema, Types } from "mongoose";
+
 import { IPage, PageSchema } from "./page";
 
 export interface IDocument extends Document {
@@ -16,7 +17,7 @@ export const DocumentSchema = new Schema({
     required: true
   },
   author: {
-    type: Number,
+    type: String,
     required: true
   },
   pages: [PageSchema]

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import HttpStatusCode from "../util/HttpStatusCode";
-import { IPage, PageModel } from "../models/page";
+import { PageModel } from "../models/page";
 
 
 export class PageController {
@@ -19,7 +19,7 @@ export class PageController {
 
   public async getPage(req: Request, res: Response): Promise<void> {
     try {
-      const page = await PageModel.findOne({ id: req.params.id });
+      const page = await PageModel.findOne({ _id: req.params.id });
       if (page === null) {
         res.sendStatus(HttpStatusCode.NOT_FOUND);
       } else {
@@ -35,8 +35,8 @@ export class PageController {
 
   public async createPage(req: Request, res: Response): Promise<void> {
     try {
-      const newPage: IPage = new PageModel(req.body);
-      const page = await PageModel.findOne({ id: req.body.id });
+      const newPage = new PageModel(req.body);
+      const page = await PageModel.findOne({ _id: req.body.id });
       if (page === null) {
         const result = await newPage.save();
         if (result === null) {
@@ -58,7 +58,7 @@ export class PageController {
   public async updatePage(req: Request, res: Response): Promise<void> {
     try {
       const page = await PageModel.findOneAndUpdate(
-        { id: req.params.id },
+        { _id: req.params.id },
         req.body
       );
       if (page === null) {
@@ -77,7 +77,7 @@ export class PageController {
 
   public async deletePage(req: Request, res: Response): Promise<void> {
     try {
-      const page = await PageModel.findOneAndDelete({ id: req.params.id });
+      const page = await PageModel.findOneAndDelete({ _id: req.params.id });
       if (page === null) {
         res.sendStatus(HttpStatusCode.NOT_FOUND);
       } else {

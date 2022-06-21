@@ -1,0 +1,9 @@
+POST http://localhost:3000/api/v1/documents HTTP/1.1
+Accept: application/json
+Content-Type: application/json
+
+{
+  "title": "Rich Dad Poor Dad",
+  "author": "Robert Kiyosaki and Sharon Lechter",
+  "pages": []
+}
