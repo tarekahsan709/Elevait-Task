@@ -1,7 +1,7 @@
-import { Request, Response } from "express";
+import { Request, Response } from 'express';
 
-import HttpStatusCode from "../util/HttpStatusCode";
-import { DocumentModel } from "../models/document";
+import HttpStatusCode from '../util/HttpStatusCode';
+import { DocumentModel } from '../models/document';
 
 export class DocumentController {
 
@@ -83,7 +83,7 @@ export class DocumentController {
       } else {
         res
           .status(HttpStatusCode.OK)
-          .json({ response: "Document deleted Successfully" });
+          .json({ response: 'Document deleted Successfully' });
       }
     } catch (error) {
       res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({

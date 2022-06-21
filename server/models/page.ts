@@ -1,4 +1,4 @@
-import { Document, model, Model, Schema, Types } from "mongoose";
+import { Document, model, Model, Schema, Types } from 'mongoose';
 
 export interface IPage extends Document {
   _id: Types.ObjectId;
@@ -15,9 +15,9 @@ export const PageSchema: Schema = new Schema({
     type: Number,
     required: true
   }
-}).set("autoIndex", true)
-  .set("minimize", false)
-  .set("timestamps", true);
+}).set('autoIndex', true)
+  .set('minimize', false)
+  .set('timestamps', true);
 
-export const PageModel: Model<IPage> = model<IPage>("Page", PageSchema);
+export const PageModel: Model<IPage> = model<IPage>('Page', PageSchema);
 

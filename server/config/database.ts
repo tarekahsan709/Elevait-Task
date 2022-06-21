@@ -1,7 +1,7 @@
-import * as mongoose from "mongoose";
-import { logger } from "../util/logger";
+import * as mongoose from 'mongoose';
+import { logger } from '../util/logger';
 
-import { Environment, MONGODB_TEST_URI, MONGODB_URI } from "./secrets";
+import { Environment, MONGODB_TEST_URI, MONGODB_URI } from './secrets';
 
 
 export class Db {
@@ -19,17 +19,17 @@ export class Db {
   public async connect(): Promise<void> {
     mongoose.connect(Db.getUri(), err => {
       if (err) {
-        logger.error("mongoose connecting failed: ", err);
+        logger.error('mongoose connecting failed: ', err);
       }
     });
-    mongoose.connection.on("error", (err) => {
-      logger.error("Error connecting to MongoDB: ", err);
+    mongoose.connection.on('error', (err) => {
+      logger.error('Error connecting to MongoDB: ', err);
     });
-    mongoose.connection.once("open", async () => {
+    mongoose.connection.once('open', async () => {
       if (process.env.NODE_ENV !== Environment.Test) {
-        logger.info("Database has connected");
+        logger.info('Database has connected');
       } else {
-        logger.info("Test Database has connected");
+        logger.info('Test Database has connected');
       }
     });
   }
@@ -40,7 +40,7 @@ export class Db {
   public async disconnect(): Promise<void> {
     mongoose.connection.close(() => {
       logger.info(
-        "Mongoose default connection disconnected through app termination"
+        'Mongoose default connection disconnected through app termination'
       );
       process.exit(0);
     });

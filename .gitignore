@@ -12,6 +12,7 @@ debug.log
 /data
 
 # dependencies
+node_modules
 /node_modules
 
 # profiling files
@@ -26,6 +27,8 @@ speed-measure-plugin*.json
 *.launch
 .settings/
 *.sublime-workspace
+.vscode
+.angular
 
 # IDE - VSCode
 .vscode/*
