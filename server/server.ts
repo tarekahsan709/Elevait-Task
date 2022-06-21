@@ -19,7 +19,7 @@ class Server {
   constructor() {
     this.app = express();
     this.db = new db.Db();
-    this.configApp();
+    dotenv.config();
     this.initApp();
   }
 
@@ -29,15 +29,12 @@ class Server {
     });
   }
 
-  private configApp(): void {
-    dotenv.config();
-  }
-
   private initApp(): void {
-    this.db.connect();
-    this.initExpressMiddleware();
-    this.initCustomMiddleware();
-    this.initRoutes();
+    this.db.connect().then(() => {
+      this.initExpressMiddleware();
+      this.initCustomMiddleware();
+      this.initRoutes();
+    });
   }
 
   // Add security middlewares

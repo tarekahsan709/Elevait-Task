@@ -26,8 +26,10 @@ export class Db {
       logger.error("Error connecting to MongoDB: ", err);
     });
     mongoose.connection.once("open", async () => {
-      if (process.env.NODE_ENV !== "test") {
+      if (process.env.NODE_ENV !== Environment.Test) {
         logger.info("Database has connected");
+      } else {
+        logger.info("Test Database has connected");
       }
     });
   }

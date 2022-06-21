@@ -12,7 +12,7 @@
     "buildprod": "tsc -p server",
     "start": "set NODE_ENV=dev && concurrently \"tsc -w -p server\" \"nodemon dist/server/server.js\"",
     "seed": "tsc -p server && node dist/server/config/seed.js",
-    "testbe": "tsc -p server && mocha dist/server/test --exit",
+    "testbackend": "tsc -p server && mocha dist/server/test --exit",
     "postinstall": ""
   },
   "private": true,
