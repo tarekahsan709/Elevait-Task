@@ -3,15 +3,14 @@ import fs = require("fs");
 
 import { logger } from "../util/logger";
 
-export enum Enviroment {
+export enum Environment {
   Production = "PRODUCTION",
   Development = "DEVELOPMENT",
   Test = "TEST",
 }
 
-// FIXME: Move entire file to a class
 /**
- * Loading enviroment file
+ * Loading environment file
  */
 if (fs.existsSync(".env")) {
   dotenv.config({ path: ".env" });
@@ -24,7 +23,7 @@ if (fs.existsSync(".env")) {
 }
 
 export const ENVIRONMENT = process.env.NODE_ENV;
-const isProductionEnv = ENVIRONMENT === Enviroment.Production;
+const isProductionEnv = ENVIRONMENT === Environment.Production;
 
 /**
  * Assigning environment variables
@@ -35,10 +34,9 @@ export const MONGODB_URI = isProductionEnv
 export const MONGODB_TEST_URI = process.env.MONGODB_TEST_URI;
 export const SEED_DB = process.env.SEED_DB;
 export const JWT_SECRET = process.env.JWT_SECRET;
-export const API_BASE_URL = process.env.API_BASE_URL;
 
 /**
- * Checking enviroment variables
+ * Checking environment variables
  */
 if (!JWT_SECRET) {
   logger.error("No jwt secret. Set JWT_SECRET environment variable.");

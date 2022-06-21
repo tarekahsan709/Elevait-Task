@@ -1,12 +1,12 @@
 import * as mongoose from "mongoose";
 import { logger } from "../util/logger";
 
-import { Enviroment, MONGODB_TEST_URI, MONGODB_URI } from "./secrets";
+import { Environment, MONGODB_TEST_URI, MONGODB_URI } from "./secrets";
 
 
 export class Db {
   private static getUri(): string {
-    if (process.env.NODE_ENV === Enviroment.Test) {
+    if (process.env.NODE_ENV === Environment.Test) {
       return MONGODB_TEST_URI;
     } else {
       return MONGODB_URI;

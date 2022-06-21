@@ -5,10 +5,12 @@ import morgan = require("morgan");
 import path = require("path");
 
 import db = require("./config/database");
-import { API_BASE_URL, Enviroment } from "./config/secrets";
+import { Environment } from "./config/secrets";
 import { logger } from "./util/logger";
 import { DocumentRoutes } from "./routes/documentRoutes";
 import { PageRoutes } from "./routes/pageRoutes";
+
+const API_BASE_URL = "/api/v1/";
 
 class Server {
   public app: express.Application;
@@ -46,7 +48,7 @@ class Server {
     this.app.use(express.urlencoded({ extended: false }));
     this.app.use(cookieParser());
 
-    if (process.env.NODE_ENV !== Enviroment.Test) {
+    if (process.env.NODE_ENV !== Environment.Test) {
       this.app.use(morgan("dev"));
     }
     process.on("uncaughtException", (err) => {
@@ -76,12 +78,13 @@ class Server {
   }
 
   private initRoutes(): void {
-    this.app.use(`${API_BASE_URL}/documents`, new DocumentRoutes().router);
-    this.app.use(`${API_BASE_URL}/pages`, new PageRoutes().router);
+    this.app.use(`${API_BASE_URL}documents`, new DocumentRoutes().router);
+    this.app.use(`${API_BASE_URL}pages`, new PageRoutes().router);
   }
 }
 
 const server = new Server();
+
 server.start();
 
 module.exports = server.app;
