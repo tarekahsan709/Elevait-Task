@@ -3,7 +3,7 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "title": "Rich Dad Poor Dad",
-  "author": "Robert Kiyosaki and Sharon Lechter",
+  "title": "Harry Potter",
+  "author": "JK Rowling",
   "pages": []
 }

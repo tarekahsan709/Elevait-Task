@@ -1,1 +1,26 @@
-<h1>Document List</h1>
+<div class="h-100 d-flex align-items-center justify-content-center">
+  <ul class="list-group">
+    <li class="list-group-item mt-4" *ngFor="let document of documents; let i = index">
+      <div class="card text-center">
+        <div class="card-body p-1 m-0">
+          <h5 class="card-title"><i class="fa fa-book" aria-hidden="true"></i>
+            {{ document.title }}</h5>
+          <p class="m-0 p-0"><small>By</small></p>
+          <p class="card-text">{{ document.author }}</p>
+          <a class="btn btn-outline-dark" routerLink="{{ document._id }}">Go Details</a>
+        </div>
+        <div class="card-footer text-muted">
+          <small>Published on {{ document.createdAt | date }}</small>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+<div class="row mt-4">
+  <div class="col-10">
+    <button type="button" class="btn btn-outline-dark pull-right">
+      <i class="fa fa-plus-square-o" aria-hidden="true"></i>
+      Create Document
+    </button>
+  </div>
+</div>

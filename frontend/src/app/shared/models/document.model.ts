@@ -1,7 +1,7 @@
 import { IPage } from './page.model';
 
 export interface IDocumentResults {
-  documents: IDocument[];
+  docs: IDocument[];
 }
 
 export interface IDocument {
