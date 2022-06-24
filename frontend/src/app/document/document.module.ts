@@ -1,16 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from '../shared/shared.module';
-
-import { DocumentListComponent } from './document-list/document-list.component';
 import { DocumentRoutingModule } from './document-routing.module';
 
+import { DocumentListComponent } from './document-list/document-list.component';
+import { DocumentCreateComponent } from './document-create/document-create.component';
+
 @NgModule({
-  declarations: [DocumentListComponent],
+  declarations: [DocumentListComponent, DocumentCreateComponent],
 
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     SharedModule,
     DocumentRoutingModule
   ]

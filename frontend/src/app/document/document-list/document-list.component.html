@@ -1,3 +1,12 @@
+<div class="row mt-1">
+  <div class="col-10">
+    <button type="button" class="btn btn-outline-danger btn-lg btn-rounded btn-icon pull-right" data-toggle="tooltip"
+            placement="bottom" ngbTooltip="Tooltip on top"
+            routerLink="create">
+      <i class="fa fa-plus-circle" aria-hidden="true"></i>
+    </button>
+  </div>
+</div>
 <div class="h-100 d-flex align-items-center justify-content-center">
   <ul class="list-group">
     <li class="list-group-item mt-4" *ngFor="let document of documents; let i = index">
@@ -6,7 +15,7 @@
           <h5 class="card-title"><i class="fa fa-book" aria-hidden="true"></i>
             {{ document.title }}</h5>
           <p class="m-0 p-0"><small>By</small></p>
-          <p class="card-text">{{ document.author }}</p>
+          <p class="card-text"><i>{{ document.author }}</i></p>
           <a class="btn btn-outline-dark" routerLink="{{ document._id }}">Go Details</a>
         </div>
         <div class="card-footer text-muted">
@@ -15,12 +24,4 @@
       </div>
     </li>
   </ul>
-</div>
-<div class="row mt-4">
-  <div class="col-10">
-    <button type="button" class="btn btn-outline-dark pull-right">
-      <i class="fa fa-plus-square-o" aria-hidden="true"></i>
-      Create Document
-    </button>
-  </div>
 </div>

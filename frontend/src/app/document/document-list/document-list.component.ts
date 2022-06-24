@@ -4,7 +4,7 @@ import { DocumentService } from '../../shared/services/document.service';
 import { IDocument, IDocumentResults } from '../../shared/models/document.model';
 
 @Component({
-  selector: 'app-product-list',
+  selector: 'app-document-list',
   templateUrl: './document-list.component.html',
   styleUrls: ['./document-list.component.css']
 })
