@@ -7,7 +7,7 @@ export class DocumentController {
 
   public async getDocuments(req: Request, res: Response): Promise<void> {
     try {
-      const docs = await DocumentModel.find();
+      const docs = await DocumentModel.find().populate('pages');
       res.status(HttpStatusCode.OK).json({ docs });
     } catch (error) {
       res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({
@@ -19,7 +19,7 @@ export class DocumentController {
 
   public async getDocument(req: Request, res: Response): Promise<void> {
     try {
-      const doc = await DocumentModel.findOne({ _id: req.params.id });
+      const doc = await DocumentModel.findOne({ _id: req.params.id }).populate('pages');
       if (doc === null) {
         res.sendStatus(HttpStatusCode.NOT_FOUND);
       } else {

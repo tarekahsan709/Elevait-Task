@@ -9,3 +9,9 @@ export interface IPage {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export interface IPageCreate {
+  documentId: string;
+  text: string;
+  pageNr: number;
+}

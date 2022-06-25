@@ -1,12 +1,11 @@
 import { Document, model, Model, Schema, Types } from 'mongoose';
 
-import { IPage, PageSchema } from './page';
-
 export interface IDocument extends Document {
   _id: Types.ObjectId;
   title: string;
   author: string;
-  pages: IPage[];
+  pages: [];
+  dateCreated: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -20,7 +19,13 @@ export const DocumentSchema = new Schema({
     type: String,
     required: true
   },
-  pages: [PageSchema]
+  dateCreated: {
+    type: String
+  },
+  pages: [{
+    type: Types.ObjectId,
+    ref: 'Page'
+  }]
 }).set('autoIndex', true)
   .set('minimize', false)
   .set('timestamps', true);

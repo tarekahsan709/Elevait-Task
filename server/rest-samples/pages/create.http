@@ -3,6 +3,7 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "text": "Robert Kiyosaki and Sharon Lechter",
-  "pageNr": 1
+  "text": "Jhon",
+  "pageNr": 1,
+  "documentId": "62b79cfe455301f7d9dafc78"
 }

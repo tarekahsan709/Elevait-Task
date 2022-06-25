@@ -7,9 +7,10 @@ import { DocumentRoutingModule } from './document-routing.module';
 
 import { DocumentListComponent } from './document-list/document-list.component';
 import { DocumentCreateComponent } from './document-create/document-create.component';
+import { DocumentDetailsComponent } from './document-details/document-details.component';
 
 @NgModule({
-  declarations: [DocumentListComponent, DocumentCreateComponent],
+  declarations: [DocumentListComponent, DocumentDetailsComponent, DocumentCreateComponent],
 
   imports: [
     CommonModule,

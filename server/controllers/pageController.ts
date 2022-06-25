@@ -1,6 +1,7 @@
-import { Request, Response } from "express";
-import HttpStatusCode from "../util/HttpStatusCode";
-import { PageModel } from "../models/page";
+import { Request, Response } from 'express';
+import HttpStatusCode from '../util/HttpStatusCode';
+import { PageModel } from '../models/page';
+import { DocumentModel } from '../models/document';
 
 
 export class PageController {
@@ -35,10 +36,19 @@ export class PageController {
 
   public async createPage(req: Request, res: Response): Promise<void> {
     try {
+      const { documentId } = req.body;
+      delete req.body.documentId;
+
       const newPage = new PageModel(req.body);
       const page = await PageModel.findOne({ _id: req.body.id });
+
       if (page === null) {
         const result = await newPage.save();
+        await DocumentModel.findOneAndUpdate(
+          { _id: documentId },
+          { $push: { pages: [result._id] } }
+        );
+
         if (result === null) {
           res.sendStatus(HttpStatusCode.INTERNAL_SERVER_ERROR);
         } else {
@@ -48,6 +58,7 @@ export class PageController {
         res.sendStatus(HttpStatusCode.UNPROCESSABLE_ENTITY);
       }
     } catch (error) {
+      console.log(error);
       res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({
         timestamp: Date.now(),
         error: error.toString()
@@ -83,7 +94,7 @@ export class PageController {
       } else {
         res
           .status(HttpStatusCode.OK)
-          .json({ response: "Page deleted Successfully" });
+          .json({ response: 'Page deleted Successfully' });
       }
     } catch (error) {
       res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({
