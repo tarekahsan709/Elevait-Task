@@ -14,7 +14,9 @@
               {{page.pageNr}}
             </button>
           </span>
-          <button class="btn btn-outline-dark btn-lg m-1 mt-2">
+          <!--suppress ALL-->
+          <button class="btn btn-outline-dark btn-lg m-1 mt-2"
+                  [routerLink]="['../../page/create']" [queryParams]="{documentId: document._id}">
             <i class="fa fa-plus-circle" aria-hidden="true"></i>
           </button>
         </div>

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 import { IDocument, IDocumentResults } from '../models/document.model';
+import { IPage, IPageCreate } from '../models/page.model';
 
 @Injectable()
 export class DocumentService {
@@ -22,7 +23,10 @@ export class DocumentService {
   }
 
   create(body: IDocument): Observable<IDocument> {
-    console.log('Document Body', body);
     return this.http.post<IDocument>(`${this.baseUrl}/documents`, body);
+  }
+
+  createPage(body: IPageCreate): Observable<IPage> {
+    return this.http.post<IPage>(`${this.baseUrl}/pages`, body);
   }
 }

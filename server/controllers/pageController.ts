@@ -1,10 +1,20 @@
 import { Request, Response } from 'express';
 import HttpStatusCode from '../util/HttpStatusCode';
-import { PageModel } from '../models/page';
-import { DocumentModel } from '../models/document';
+import { IPage, PageModel } from '../models/page';
+import { DocumentModel, IDocument } from '../models/document';
 
 
 export class PageController {
+
+  private static async getNewPageNr(documentId): Promise<number> {
+    const doc: IDocument = await DocumentModel.findOne({ _id: documentId }).populate('pages');
+    const lastPageNr = Math.max(...doc.pages.map((page: IPage) => page.pageNr));
+    if (!isFinite(lastPageNr)) {
+      return 1;
+    } else {
+      return lastPageNr + 1;
+    }
+  }
 
   public async getPages(req: Request, res: Response): Promise<void> {
     try {
@@ -39,9 +49,13 @@ export class PageController {
       const { documentId } = req.body;
       delete req.body.documentId;
 
-      const newPage = new PageModel(req.body);
-      const page = await PageModel.findOne({ _id: req.body.id });
+      const newPageNr = await PageController.getNewPageNr(documentId);
+      const newPage = new PageModel({
+        text: req.body.text.text,
+        pageNr: newPageNr
+      });
 
+      const page = await PageModel.findOne({ _id: req.body.id });
       if (page === null) {
         const result = await newPage.save();
         await DocumentModel.findOneAndUpdate(
@@ -58,7 +72,6 @@ export class PageController {
         res.sendStatus(HttpStatusCode.UNPROCESSABLE_ENTITY);
       }
     } catch (error) {
-      console.log(error);
       res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({
         timestamp: Date.now(),
         error: error.toString()

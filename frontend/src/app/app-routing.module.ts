@@ -7,6 +7,11 @@ const routes: Routes = [
     path: 'document',
     loadChildren: () =>
       import('./document/document.module').then((module) => module.DocumentModule)
+  },
+  {
+    path: 'page',
+    loadChildren: () =>
+      import('./page/page.module').then((module) => module.PageModule)
   }
 ];
 

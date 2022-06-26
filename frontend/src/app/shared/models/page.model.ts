@@ -13,5 +13,4 @@ export interface IPage {
 export interface IPageCreate {
   documentId: string;
   text: string;
-  pageNr: number;
 }
