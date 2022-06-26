@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { IDocument } from '../../shared/models/document.model';
 import { DocumentService } from '../../shared/services/document.service';
+import { IPage } from '../../shared/models/page.model';
 
 @Component({
   selector: 'app-document-details',
@@ -11,6 +12,7 @@ import { DocumentService } from '../../shared/services/document.service';
 })
 export class DocumentDetailsComponent implements OnInit {
   document: IDocument;
+  selectedPage: IPage;
 
   constructor(
     private router: Router,
@@ -37,6 +39,14 @@ export class DocumentDetailsComponent implements OnInit {
         console.error('Document details loading failed');
       }
     });
+  }
+
+  hasSelected(page: IPage): boolean {
+    return this.selectedPage && page._id === this.selectedPage._id;
+  }
+
+  onPage(page: IPage) {
+    this.selectedPage = page;
   }
 
 }

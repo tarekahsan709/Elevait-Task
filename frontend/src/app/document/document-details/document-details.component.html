@@ -5,15 +5,24 @@
         <h2 class="card-title m-2">{{ document.title }}</h2>
         <p class="m-0">Author: {{document.author}} </p>
         <p class="m-0">Date: {{document.createdAt | date}} </p>
-        <p class="m-0">Pages:
-          <br/>
-          <button class="btn btn-outline-dark btn-lg m-1 mt-2" *ngFor="let page of document.pages; let i = index">
-            {{page.pageNr}}
-          </button>
+        <div class="m-0">Pages:
+          <br />
+          <span *ngFor="let page of document.pages; let i = index">
+            <!--suppress ALL-->
+            <button [ngClass]="{'active':hasSelected(page)}" class="btn btn-outline-dark btn-lg m-1 mt-2"
+                    (click)="onPage(page)">
+              {{page.pageNr}}
+            </button>
+          </span>
           <button class="btn btn-outline-dark btn-lg m-1 mt-2">
             <i class="fa fa-plus-circle" aria-hidden="true"></i>
           </button>
-        </p>
+        </div>
+      </div>
+    </div>
+    <div class="card" *ngIf="selectedPage">
+      <div class="card-body">
+        <p class="card-title m-2">{{ selectedPage.text }}</p>
       </div>
     </div>
   </div>
