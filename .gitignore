@@ -4,7 +4,6 @@
 *.log
 debug.log
 # compiled output
-/dist
 /tmp
 /out-tsc
 # Only exists if Bazel was run
@@ -56,4 +55,4 @@ Thumbs.db
 /data
 
 # API keys and secrets
-.env
+backend/.env

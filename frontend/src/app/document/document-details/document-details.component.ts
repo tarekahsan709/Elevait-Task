@@ -30,7 +30,6 @@ export class DocumentDetailsComponent implements OnInit {
     this.service.getDocumentById(id).subscribe({
       next: (data: IDocument) => {
         this.document = data;
-        console.log('Document', this.document);
       },
       complete: () => {
         console.log('Document details has loaded');

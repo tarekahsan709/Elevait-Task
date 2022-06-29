@@ -1,38 +1,21 @@
-# Elevait Test
+# Elevait Task
+[![](https://github.com/tarekahsan709/Elevait-Task/workflows/Build/badge.svg)](https://github.com/tarekahsan709/Elevait-Task/actions?query=workflow%3ABuild)
+[![](https://github.com/tarekahsan709/Elevait-Task/workflows/Tests/badge.svg)](https://github.com/tarekahsan709/Elevait-Task/actions?query=workflow%3ATests)
 
-## :bookmark: Table of Contents
-- [Built with](#hammer-built-with)
-- [Tools and Technologies](#gear-tools-and-technologies)
-- [Feature List](#bookmark-feature-list)
-- [Installation](#installation)
-- [Run and Test](#run)
-
-## :hammer: Built with
-- [TypeScript](https://www.typescriptlang.org/)
-- [Express](https://expressjs.com/)
-- [MongoDB](https://www.mongodb.com/)
-- [Mocha](https://mochajs.org/)
-
-## :gear: Tools and Technologies
-- [Docker](https://www.typescriptlang.org/)
-- [Heroku](https://expressjs.com/)
-
-# :bookmark: Feature List
-  
 ##  Installation
-1. Install [Node.js](https://nodejs.org) and [MongoDB](https://www.mongodb.com)
-3. From project root folder install all the dependencies: `npm i`
+1. Install [Node.js](https://nodejs.org)
+2. Install Angular CLI: `npm i -g @angular/cli`
+3. Go to backend and frontend folder to install all the dependencies: `npm i`
 
-## Run
+##  Run
+- Copy the .env.example file and rename it .env, put all the environment variable. For database connection string put all the value under <> bracket.
+- Go to backend folder and run `npm run dev` to start the backend which compile typeScript run the Express server.
+- Go to frontend folder and run `ng serve` to start the frontend.
 
-### Development mode
+Frontend will be open at [localhost:4200](http://localhost:4200). Angular and Express files are being watched. Any change automatically creates a new bundle, restart Express server and reload your browser.
 
-### Production mode
-
-### Docker
-
-### Running tests
-
-### Author
-
-- [Nazmul Ahsan](https://github.com/tarekahsan709)
+## Testing
+```bash
+# go to backend folder and run unit tests 
+npm run test
+```

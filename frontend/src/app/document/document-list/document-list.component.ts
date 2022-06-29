@@ -22,7 +22,6 @@ export class DocumentListComponent implements OnInit {
     this.service.getDocuments().subscribe({
       next: (data: IDocumentResults) => {
         this.documents = data.docs;
-        console.log('Documents', this.documents);
       },
       complete: () => {
         console.log('Documents has loaded');

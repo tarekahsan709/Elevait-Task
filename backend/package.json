@@ -6,8 +6,8 @@
   "description": "Application Task for Full Stack Web-Developers",
   "scripts": {
     "buildprod": "tsc -p server",
-    "dev": "set NODE_ENV=dev && concurrently \"tsc -w -p server\" \"nodemon dist/server/server.js\"",
-    "testbackend": "tsc -p server && mocha dist/server/test --exit",
+    "dev": "set NODE_ENV=DEVELOPMENT && concurrently \"tsc -w -p server\" \"nodemon dist/server/server.js\"",
+    "test": "tsc -p server && mocha dist/server/test --exit",
     "postinstall": ""
   },
   "private": true,

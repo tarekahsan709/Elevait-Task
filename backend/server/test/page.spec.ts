@@ -38,17 +38,4 @@ describe('GET /pages', () => {
     expect(res.body.pages).to.be.a('array');
   });
 
-  it('should create a new page', async function() {
-    const mockDocument = {
-      text: 'A new page',
-      pageNr: 3
-    };
-    const res = await chai
-      .request(server)
-      .post('/api/v1/pages')
-      .send(mockDocument);
-    expect(res.status).to.equal(201);
-    expect(res.body).to.be.a('object');
-  });
-
 });

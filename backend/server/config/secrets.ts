@@ -32,7 +32,6 @@ export const MONGODB_URI = isProductionEnv
   ? process.env.MONGODB_URI
   : process.env.MONGODB_URI_LOCAL;
 export const MONGODB_TEST_URI = process.env.MONGODB_TEST_URI;
-export const SEED_DB = process.env.SEED_DB;
 export const JWT_SECRET = process.env.JWT_SECRET;
 
 /**
