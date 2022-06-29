@@ -1,6 +1,5 @@
 # Elevait Task
 [![](https://github.com/tarekahsan709/Elevait-Task/workflows/Build/badge.svg)](https://github.com/tarekahsan709/Elevait-Task/actions?query=workflow%3ABuild)
-[![](https://github.com/tarekahsan709/Elevait-Task/workflows/Tests/badge.svg)](https://github.com/tarekahsan709/Elevait-Task/actions?query=workflow%3ATests)
 
 ##  Installation
 1. Install [Node.js](https://nodejs.org)
