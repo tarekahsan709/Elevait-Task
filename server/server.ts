@@ -1,14 +1,15 @@
-import cookieParser = require('cookie-parser');
 import dotenv = require('dotenv');
 import express = require('express');
 import morgan = require('morgan');
-import path = require('path');
+import helmet from 'helmet';
 
 import db = require('./config/database');
 import { Environment } from './config/secrets';
 import { logger } from './util/logger';
+
 import { DocumentRoutes } from './routes/documentRoutes';
 import { PageRoutes } from './routes/pageRoutes';
+import { limiter } from './util/RateLimiter';
 
 const API_BASE_URL = '/api/v1/';
 
@@ -32,18 +33,16 @@ class Server {
   private initApp(): void {
     this.db.connect().then(() => {
       this.initExpressMiddleware();
-      this.initCustomMiddleware();
       this.initRoutes();
     });
   }
 
-  // Add security middlewares
   private initExpressMiddleware(): void {
     this.app.set('port', process.env.PORT || 3000);
-    this.app.use('/', express.static(path.join(__dirname, '../public')));
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: false }));
-    this.app.use(cookieParser());
+    this.app.use(helmet());
+    this.app.use(limiter);
 
     if (process.env.NODE_ENV !== Environment.Test) {
       this.app.use(morgan('dev'));
@@ -52,25 +51,6 @@ class Server {
       if (err) {
         logger.error(err.stack);
       }
-    });
-  }
-
-  private initCustomMiddleware(): void {
-    if (process.platform === 'win32') {
-      require('readline')
-        .createInterface({
-          input: process.stdin,
-          output: process.stdout
-        })
-        .on('SIGINT', () => {
-          logger.info('SIGINT: Closing MongoDB connection');
-          this.db.disconnect();
-        });
-    }
-
-    process.on('SIGINT', () => {
-      logger.info('SIGINT: Closing MongoDB connection');
-      this.db.disconnect();
     });
   }
 
