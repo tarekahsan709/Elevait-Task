@@ -9,11 +9,6 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-latest
-    services:
-      mongodb:
-        image: mongo:3.4.10
-        ports:
-          - 27017:27017
     strategy:
       matrix:
         node-version: [16.x]
@@ -24,6 +19,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: |
-          cd frontend
+          cd backend
           npm install
           npm run test
